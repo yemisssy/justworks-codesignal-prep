@@ -1,6 +1,16 @@
 //Wasn't sure how to save this. So I renamed the file to .js
 
-export const data = {
+//Right now, I jsut need to get the tasks, and start my state management with teh tasks
+// because the tasks are what drives actions , my mental model is that the stages/ status/columns
+//are just buckets that doen't change and are use to retrieve or store tasks sorted into them
+//The tasks are what needs to be passed from parent to child in the case of app.jsx and cardrendering component
+
+//So, my justification for reducing the data to just return an array of tasks is because task is all i need since each task already have the
+//category they belong to
+
+//--->Reduce Data to and array of tasks -->
+//---convert it to an array of 3 column objects with values tasks; [{to_do:[]}, {in_progress:[]}]
+export const data = Object.values({
   todoItems: [
     {
       title: "Task 3",
@@ -27,4 +37,15 @@ export const data = {
       userId: "userId2",
     },
   ],
-};
+})
+  .flat()
+  .map((task, index) => {
+    const finalData = [];
+    const columnObj = {};
+    columnObj[task.status] = [task];
+    finalData.push(columnObj);
+    return finalData;
+  })
+  .flat();
+
+console.log("Final Data", data);

@@ -1,4 +1,25 @@
-.counter {
+.board__columns {
+  max-width: 100%;
+  display: flex;
+  gap: 5px;
+}
+.column {
+  background-color: #6ac7ff;
+  height: 300px;
+  border-radius: 3px;
+  box-shadow: 0px 1px 3px 1px #43a9ff;
+  flex: 1;
+}
+
+.column__cards {
+  border: 2px solid black;
+  background-color: #0092f6;
+  border: 1px solid #6d717a;
+  border-radius: 5px;
+  max-width: 90%;
+}
+
+/* .counter {
   font-size: 16px;
   padding: 5px 10px;
   border-radius: 5px;
@@ -181,4 +202,4 @@
     right: 0;
     border-right-color: var(--border);
   }
-}
+} */

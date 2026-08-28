@@ -268,7 +268,38 @@ Tasks already in `TO_DO` must **not** display a Move Left button.
 </div>
 ```
 
----
+### API Endpoints
+
+#### Get all tasks
+
+GET https://contentapi.codesignal.com/tasks
+
+Example response:
+
+````json
+{
+  "data": [
+    {
+      "title": "Task 1",
+      "description": "Detailed task 1 description",
+      "status": "IN_PROGRESS",
+      "assignedUser": "userId1"
+    },
+    {
+      "title": "Task 2",
+      "description": "Detailed task 2 description",
+      "status": "DONE"
+    },
+    {
+      "title": "Task 3",
+      "description": "Detailed task 3 description",
+      "status": "TO_DO",
+      "assignedUser": "userId2"
+    }
+  ]
+}
+
+GET https://contentapi.codesignal.com/users/{userId}
 
 # Practice Timing
 
@@ -279,7 +310,7 @@ Level 3: 30 minutes
 Level 4: 20 minutes
 
 Total: 90 minutes
-```
+````
 
 ## Practice Rule
 
