@@ -13,17 +13,6 @@ import "./App.css";
 //two values, the task and teh direction
 //This component should probably hold a status state for button click direction?
 
-//How do I represent the the column order as a fixed order, I can use a config driven approach?
-// but I don't know how to do that yet
-
-//---MY GOAL-->
-//Solve this with what I know, & improve/clean up later
-//Complete each level & and the work on css after
-
-//I am stuck because I need to create 3 coloumns and immeditaly display each columns tasks, I am
-//trying to do this without memorizing the future api data structure. I can make te columns an array
-//of objects , but how do I setStatus when I am splicing
-
 function RenderColumn(colProps) {
   const { status } = colProps;
 
@@ -34,7 +23,7 @@ function RenderColumn(colProps) {
         {tasks
           .filter((task) => task.status === status)
           .map((card, index) => (
-            <div className="card" key={index}>
+            <div className="card" key={`${index}-${status}${card.title}`}>
               <h3 className="card__title">{card.title}</h3>
               <p className="card__description">{card.description}</p>
             </div>

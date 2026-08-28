@@ -3,10 +3,9 @@ import { useState } from "react";
 import { addNewTask } from "./taskApi";
 
 function NewTaskForm(formProp) {
-  const { modalOpen, closeModal } = formProp;
-  console.log(modalOpen);
+  const { closeModal } = formProp;
 
-  //   const [submitted, setSubmitted] = useState(false);
+  //const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     taskTitle: "",
     taskDescription: "",

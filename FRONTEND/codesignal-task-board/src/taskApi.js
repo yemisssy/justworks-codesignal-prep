@@ -1,3 +1,4 @@
+import { statuses } from "./constant";
 //Wasn't sure how to save this. So I renamed the file to .js
 
 //Right now, I jsut need to get the tasks, and start my state management with teh tasks
@@ -54,7 +55,7 @@ export const addNewTask = (newTask) => {
   tasks.push({
     title: newTask.taskTitle,
     description: newTask["taskDescription"],
-    status: "TO_DO",
+    status: statuses[0],
   }); // This feels hardcoded, can I do it differently?
 };
 

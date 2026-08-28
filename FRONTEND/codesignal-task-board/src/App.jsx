@@ -33,14 +33,14 @@ import { useState } from "react";
 // and then update the To status. I don't collect or generate User id for these submissions
 
 function App() {
-  const [modalOpen, setModalopen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleModalOpen = () => {
     setModalopen(true);
   };
 
   const handleModalClose = () => {
-    setModalopen(false);
+    setModalOpen(false);
   };
   return (
     <div className="board">
@@ -65,7 +65,7 @@ function App() {
         <div className="modal_overlay">
           <div className="modal_content">
             <h2>Enter your task detail below</h2>
-            <NewTaskForm modalOpen closeModal={handleModalClose} />
+            <NewTaskForm closeModal={handleModalClose} />
           </div>
         </div>
       )}
