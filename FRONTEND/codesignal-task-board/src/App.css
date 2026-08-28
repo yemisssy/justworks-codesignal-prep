@@ -4,7 +4,7 @@
   gap: 5px;
 }
 .column {
-  background-color: #6ac7ff;
+  background-color: #c7e7ff;
   height: 300px;
   border-radius: 3px;
   box-shadow: 0px 1px 3px 1px #43a9ff;
@@ -14,14 +14,17 @@
 }
 
 .column__cards {
-  background-color: #43a9ff;
+  /* background-color: #f0f8ff; */
   border-radius: 5px;
   width: 90%;
-  margin: 10px auto;
+  margin: 0px auto;
 }
 .card {
-  border: 2px solid #526167;
+  background-color: #ffd6c9;
+  border: 2px solid #f0f8ff;
   border-radius: 5px;
+  max-width: 90%;
+  margin: 10px auto;
 }
 /* .counter {
   font-size: 16px;
