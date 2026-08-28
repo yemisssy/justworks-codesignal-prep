@@ -10,11 +10,18 @@
 
 //--->Reduce Data to and array of tasks -->
 //---convert it to an array of 3 column objects with values tasks; [{to_do:[]}, {in_progress:[]}]
-export const data = Object.values({
+
+export const data = {
   todoItems: [
     {
       title: "Task 3",
       description: "Detailed task 3 description",
+      status: "TO_DO",
+      userId: "userId2",
+    },
+    {
+      title: "Task 6",
+      description: "Detailed task 6 description",
       status: "TO_DO",
       userId: "userId2",
     },
@@ -37,15 +44,9 @@ export const data = Object.values({
       userId: "userId2",
     },
   ],
-})
-  .flat()
-  .map((task, index) => {
-    const finalData = [];
-    const columnObj = {};
-    columnObj[task.status] = [task];
-    finalData.push(columnObj);
-    return finalData;
-  })
-  .flat();
+};
 
-console.log("Final Data", data);
+//Future API CALL
+
+// Tasks will be used for data now & updated for Api Call result later
+export const tasks = Object.values(data).flat();

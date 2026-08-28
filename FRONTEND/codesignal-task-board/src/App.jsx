@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
-import { data } from "./mockData.js";
-import RenderCard from "./CardRendering.jsx";
+
+import { statuses } from "./constant.js";
+import { tasks } from "./taskApi.js";
+
+import RenderColumn from "./CardRendering.jsx";
 
 //Since The count of the columns can change even if the columns stages are permanent
 //I need to keep a state of the stages/status , so I can manage changes for each time a stage changes
@@ -31,19 +34,23 @@ import RenderCard from "./CardRendering.jsx";
 // and then update the To status. I don't collect or generate User id for these submissions
 
 function App() {
-  const [columns, setColumns] = useState(data);
-  console.log(...columns);
-  // console.log(
-  //   columns.map((col, ind) => {
-  //     console.log(Object.values(col));
-  //   }),
-  // );
+  //since my statuses are in fixed order & rendering my column on that
+  //then I want an array that will be used to map tasks into cards based on the current status
+
+  // useEffect(() => {
+  //   statuses.forEach((status) => {
+  //     tasks.filter((task) => task.status === status);
+  //   });
+  // });
+
+  //CLAUDE QUESTIONS: COULD I HAVE USED USEEFFECT?
+
   return (
     <div className="board">
       <h2 className="board__title">Tasks</h2>
       <div className="board__columns">
-        {columns.map((col, index) => (
-          <RenderCard columns={columns} currentCol={col} key={`col${index}`} />
+        {statuses.map((status, index) => (
+          <RenderColumn status={status} key={`${status}${index}`} />
         ))}
       </div>
     </div>

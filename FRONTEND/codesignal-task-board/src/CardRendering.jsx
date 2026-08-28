@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { tasks } from "./taskApi.js";
+
 import "./App.css";
 
 //This components recieves tasks
@@ -23,23 +25,30 @@ import "./App.css";
 //I am stuck because I need to create 3 coloumns and immeditaly display each columns tasks, I am
 //trying to do this without memorizing the future api data structure. I can make te columns an array
 //of objects , but how do I setStatus when I am splicing
-function RenderCard(colProps) {
-  const { columns, currentCol } = colProps;
-  const [title, cards] = Object.entries(currentCol)[0];
+function RenderColumn(colProps) {
+  const { status } = colProps;
+  console.log(tasks);
+
+  //since my statuses are in fixed order & rendering my column on that
+  //then I want an array that will be used to map tasks into cards based on the current status
+
+  //CLAUDE QUESTION: Does filtering and mapping inside render look clean, how can I do with outside of render?
 
   return (
     <div className="column">
-      <h2 className="column__title">{title}</h2>
-      <div className="column__cards">
-        {cards.map((card, index) => (
-          <div className="card" key={index}>
-            <h3 className="card__title">{card["title"]}</h3>
-            <p className="card__description">{card["description"]}</p>
+      <h2 className="column__title">{status}</h2>
+      {tasks
+        .filter((tasks) => tasks.status === status)
+        .map((card, index) => (
+          <div className="column__cards">
+            <div className="card" key={index}>
+              <h3 className="card__title">{card.title}</h3>
+              <p className="card__description">{card.description}</p>
+            </div>
           </div>
         ))}
-      </div>
     </div>
   );
 }
 
-export default RenderCard;
+export default RenderColumn;
