@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-
 import "./App.css";
 
 import { statuses } from "./constant.js";
-import { tasks } from "./taskApi.js";
 
-import RenderColumn from "./CardRendering.jsx";
+import RenderColumn from "./rendercolumn.jsx";
+import NewTaskForm from "./newtaskForm.jsx";
+import { useState } from "react";
 
 //Since The count of the columns can change even if the columns stages are permanent
 //I need to keep a state of the stages/status , so I can manage changes for each time a stage changes
@@ -34,25 +33,42 @@ import RenderColumn from "./CardRendering.jsx";
 // and then update the To status. I don't collect or generate User id for these submissions
 
 function App() {
-  //since my statuses are in fixed order & rendering my column on that
-  //then I want an array that will be used to map tasks into cards based on the current status
+  const [modalOpen, setModalopen] = useState(false);
 
-  // useEffect(() => {
-  //   statuses.forEach((status) => {
-  //     tasks.filter((task) => task.status === status);
-  //   });
-  // });
+  const handleModalOpen = () => {
+    setModalopen(true);
+  };
 
-  //CLAUDE QUESTIONS: COULD I HAVE USED USEEFFECT?
-
+  const handleModalClose = () => {
+    setModalopen(false);
+  };
   return (
     <div className="board">
-      <h2 className="board__title">Tasks</h2>
+      <div className="board_header">
+        <h2 className="board__title">Tasks</h2>
+        <button
+          aria-label="Create New Task"
+          className="new_task_button"
+          type="button"
+          onClick={() => handleModalOpen()}
+        >
+          Add Task
+        </button>
+      </div>
+      <hr />
       <div className="board__columns">
         {statuses.map((status, index) => (
           <RenderColumn status={status} key={`${status}${index}`} />
         ))}
       </div>
+      {modalOpen && (
+        <div className="modal_overlay">
+          <div className="modal_content">
+            <h2>Enter your task detail below</h2>
+            <NewTaskForm modalOpen closeModal={handleModalClose} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

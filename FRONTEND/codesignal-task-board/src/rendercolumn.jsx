@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import { tasks } from "./taskApi.js";
 
 import "./App.css";
@@ -28,11 +26,6 @@ import "./App.css";
 
 function RenderColumn(colProps) {
   const { status } = colProps;
-
-  //since my statuses are in fixed order & rendering my column on that
-  //then I want an array that will be used to map tasks into cards based on the current status
-
-  //CLAUDE QUESTION: Does filtering and mapping inside render look clean, how can I do with outside of render?
 
   return (
     <div className="column">

@@ -46,7 +46,20 @@ export const data = {
   ],
 };
 
+export const tasks = Object.values(data).flat();
+console.log(tasks);
+
+export const addNewTask = (newTask) => {
+  console.log(newTask);
+  tasks.push({
+    title: newTask.taskTitle,
+    description: newTask["taskDescription"],
+    status: "TO_DO",
+  }); // This feels hardcoded, can I do it differently?
+};
+
 //Future API CALL
 
 // Tasks will be used for data now & updated for Api Call result later
-export const tasks = Object.values(data).flat();
+
+//I want task to be updated herer, so create a function that receieces task post submission or move

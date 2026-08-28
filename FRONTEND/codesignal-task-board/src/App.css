@@ -1,3 +1,10 @@
+.board_header {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin: 20px auto;
+}
+
 .board__columns {
   max-width: 100%;
   display: flex;
@@ -5,12 +12,10 @@
 }
 .column {
   background-color: #c7e7ff;
-  height: 300px;
+  height: fit-content;
   border-radius: 3px;
   box-shadow: 0px 1px 3px 1px #43a9ff;
   flex: 1;
-  /* display: flex; */
-  /* gap: 10px; */
 }
 
 .column__cards {
@@ -26,6 +31,62 @@
   max-width: 90%;
   margin: 10px auto;
 }
+
+.new_task_form input[name="taskTitle"],
+.new_task_form textarea[name="taskDescription"] {
+  box-sizing: border-box; /* Forces padding/borders to stay inside the height */
+  width: 100%; /* Fills the container width */
+  height: 48px; /* Gives both fields the exact same explicit height */
+
+  /* Shared styling for match consistency */
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 10px auto;
+}
+.new_task_button,
+.new_task_form input[name="submitButton"] {
+  background-color: #ffa083;
+  color: black;
+  padding: 12px 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  border-bottom: 2px solid #ff7349;
+}
+.close_form_button {
+  background-color: #c7e8ff;
+  color: black;
+  padding: 12px 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  border-bottom: 2px solid #6ac7ff;
+}
+
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal_content {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  min-width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
 /* .counter {
   font-size: 16px;
   padding: 5px 10px;
