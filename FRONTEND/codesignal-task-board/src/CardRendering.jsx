@@ -25,9 +25,9 @@ import "./App.css";
 //I am stuck because I need to create 3 coloumns and immeditaly display each columns tasks, I am
 //trying to do this without memorizing the future api data structure. I can make te columns an array
 //of objects , but how do I setStatus when I am splicing
+
 function RenderColumn(colProps) {
   const { status } = colProps;
-  console.log(tasks);
 
   //since my statuses are in fixed order & rendering my column on that
   //then I want an array that will be used to map tasks into cards based on the current status
@@ -37,16 +37,16 @@ function RenderColumn(colProps) {
   return (
     <div className="column">
       <h2 className="column__title">{status}</h2>
-      {tasks
-        .filter((tasks) => tasks.status === status)
-        .map((card, index) => (
-          <div className="column__cards">
+      <div className="column__cards">
+        {tasks
+          .filter((task) => task.status === status)
+          .map((card, index) => (
             <div className="card" key={index}>
               <h3 className="card__title">{card.title}</h3>
               <p className="card__description">{card.description}</p>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
     </div>
   );
 }
