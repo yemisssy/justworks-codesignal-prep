@@ -47,6 +47,16 @@ export const data = {
   ],
 };
 
+//Future API CALL
+export const fetchTask = async () => {
+  try {
+    const response = await fetch("https://contentapi.codesignal.com/tasks");
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+};
 export const tasks = Object.values(data)
   .flat()
   .map((task) => ({ ...task, id: crypto.randomUUID() }));
@@ -60,8 +70,6 @@ export const shapeNewTask = (newTask) => {
   };
   return newTaskReshaped;
 };
-
-//Future API CALL
 
 // Tasks will be used for data now & updated for Api Call result later
 

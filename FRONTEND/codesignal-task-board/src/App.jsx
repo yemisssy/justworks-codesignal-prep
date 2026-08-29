@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 import { statuses } from "./constant.js";
-import { tasks } from "./taskApi.js";
+import { tasks, fetchTask } from "./taskApi.js";
 
 import RenderColumn from "./rendercolumn.jsx";
 import NewTaskForm from "./newtaskForm.jsx";
@@ -10,6 +10,11 @@ import NewTaskForm from "./newtaskForm.jsx";
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [appTasks, setAppTask] = useState(tasks);
+
+  const updateTaskstApiData = async () => {
+    const data = await fetchTask();
+    data?.data?.length > 0 ? setAppTask(data.data) : null;
+  };
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -21,8 +26,12 @@ function App() {
 
   const handleFormSubmit = (newTask) => {
     //update app state here for tasks
-    setAppTask((prev) => [...appTasks, newTask]);
+    setAppTask((prev) => [...prev, newTask]);
   };
+
+  useEffect(() => {
+    updateTaskstApiData();
+  }, []);
 
   return (
     <div className="board">

@@ -6,6 +6,7 @@ function RenderColumn(colProps) {
   return (
     <div className="column">
       <h2 className="column__title">{status}</h2>
+      <hr />
       <div className="column__cards">
         {tasks
           .filter((task) => task.status === status)
