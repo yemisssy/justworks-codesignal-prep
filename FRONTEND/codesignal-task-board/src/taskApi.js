@@ -49,7 +49,7 @@ export const data = {
 
 export const tasks = Object.values(data).flat();
 
-export const addNewTask = (newTask) => {
+export const shapeNewTask = (newTask) => {
   const newTaskReshaped = {
     title: newTask.taskTitle,
     description: newTask["taskDescription"],

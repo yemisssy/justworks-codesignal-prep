@@ -1,16 +1,5 @@
 import "./App.css";
 
-//This components recieves tasks
-//This component displays the task based on their status, i.e it pulls from their status
-//data structure to render, so it can either own or recieve the structure from parent component?
-//SHOULD I SEPARATE THE STATUSES INTO 3 STATES? DOES THAT MAKE MANIPULATION EASIER & CODE CLEANER? I'LL TRY
-//This component will render/display the button for left & right
-//On click of the left & right button , this component determines and holds the logic to
-//remove the task from one status bucket, temporarily save it - using a queue/stack/ array
-// and then add it to next column or previous based on the direction received , so that function would receive
-//two values, the task and teh direction
-//This component should probably hold a status state for button click direction?
-
 function RenderColumn(colProps) {
   const { status, tasks } = colProps;
 

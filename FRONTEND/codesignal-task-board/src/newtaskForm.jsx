@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { addNewTask } from "./taskApi";
+import { shapeNewTask } from "./taskApi";
 
 function NewTaskForm(formProp) {
   const { closeModal, handleFormSubmission } = formProp;
@@ -22,7 +22,11 @@ function NewTaskForm(formProp) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const returnedNewTask = addNewTask(formData);
+    const taskTitle = formData.taskTitle.trim();
+    const taskDescription = formData.taskDescription.trim();
+
+    if (!taskTitle || !taskDescription) return;
+    const returnedNewTask = shapeNewTask({ taskTitle, taskDescription });
     handleFormSubmission(returnedNewTask);
     setFormData({
       taskTitle: "",
