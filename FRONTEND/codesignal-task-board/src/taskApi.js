@@ -48,15 +48,14 @@ export const data = {
 };
 
 export const tasks = Object.values(data).flat();
-console.log(tasks);
 
 export const addNewTask = (newTask) => {
-  console.log(newTask);
-  tasks.push({
+  const newTaskReshaped = {
     title: newTask.taskTitle,
     description: newTask["taskDescription"],
     status: statuses[0],
-  }); // This feels hardcoded, can I do it differently?
+  };
+  return newTaskReshaped;
 };
 
 //Future API CALL

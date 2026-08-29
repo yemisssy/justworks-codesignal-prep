@@ -1,5 +1,3 @@
-import { tasks } from "./taskApi.js";
-
 import "./App.css";
 
 //This components recieves tasks
@@ -14,7 +12,7 @@ import "./App.css";
 //This component should probably hold a status state for button click direction?
 
 function RenderColumn(colProps) {
-  const { status } = colProps;
+  const { status, tasks } = colProps;
 
   return (
     <div className="column">

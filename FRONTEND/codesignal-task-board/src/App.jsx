@@ -1,10 +1,11 @@
+import { useState } from "react";
 import "./App.css";
 
 import { statuses } from "./constant.js";
+import { tasks } from "./taskApi.js";
 
 import RenderColumn from "./rendercolumn.jsx";
 import NewTaskForm from "./newtaskForm.jsx";
-import { useState } from "react";
 
 //Since The count of the columns can change even if the columns stages are permanent
 //I need to keep a state of the stages/status , so I can manage changes for each time a stage changes
@@ -34,14 +35,21 @@ import { useState } from "react";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [appTasks, setAppTask] = useState(tasks);
 
   const handleModalOpen = () => {
-    setModalopen(true);
+    setModalOpen(true);
   };
 
   const handleModalClose = () => {
     setModalOpen(false);
   };
+
+  const handleFormSubmit = (newTask) => {
+    //update app state here for tasks
+    setAppTask([...appTasks, newTask]);
+  };
+
   return (
     <div className="board">
       <div className="board_header">
@@ -58,14 +66,21 @@ function App() {
       <hr />
       <div className="board__columns">
         {statuses.map((status, index) => (
-          <RenderColumn status={status} key={`${status}${index}`} />
+          <RenderColumn
+            status={status}
+            key={`${status}${index}`}
+            tasks={appTasks}
+          />
         ))}
       </div>
       {modalOpen && (
         <div className="modal_overlay">
           <div className="modal_content">
             <h2>Enter your task detail below</h2>
-            <NewTaskForm closeModal={handleModalClose} />
+            <NewTaskForm
+              closeModal={handleModalClose}
+              handleFormSubmission={handleFormSubmit}
+            />
           </div>
         </div>
       )}

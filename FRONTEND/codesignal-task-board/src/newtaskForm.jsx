@@ -3,9 +3,8 @@ import { useState } from "react";
 import { addNewTask } from "./taskApi";
 
 function NewTaskForm(formProp) {
-  const { closeModal } = formProp;
+  const { closeModal, handleFormSubmission } = formProp;
 
-  //const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     taskTitle: "",
     taskDescription: "",
@@ -23,8 +22,12 @@ function NewTaskForm(formProp) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setSubmitted(true);
-    addNewTask(formData);
+    const returnedNewTask = addNewTask(formData);
+    handleFormSubmission(returnedNewTask);
+    setFormData({
+      taskTitle: "",
+      taskDescription: "",
+    });
   };
 
   return (
@@ -35,6 +38,7 @@ function NewTaskForm(formProp) {
           placeholder="Task title*"
           value={formData.taskTitle}
           onChange={handleChange}
+          required
         />
       </div>
 
@@ -44,12 +48,17 @@ function NewTaskForm(formProp) {
           placeholder="Task description*"
           value={formData.taskDescription}
           onChange={handleChange}
+          required
         />
       </div>
 
       <div>
         <input name="submitButton" type="submit" value="Create task" />
-        <button className="close_form_button" onClick={() => closeModal()}>
+        <button
+          className="close_form_button"
+          type="button"
+          onClick={() => closeModal()}
+        >
           Close Form
         </button>
       </div>
