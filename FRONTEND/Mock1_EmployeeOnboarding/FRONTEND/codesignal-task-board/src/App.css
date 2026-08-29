@@ -1,8 +1,28 @@
+.dashboard {
+}
 .dashboard__columns {
   display: flex;
-  border: 2px solid red;
   gap: 10px;
 }
-.columns {
+
+.column {
+  background-color: lightblue;
   flex: 1;
+  border-radius: 5px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 2px 1px 2px #aa878f;
+  height: fit-content;
+}
+.column__cards {
+  border-radius: 5px;
+  margin: 10px auto;
+  width: 90%;
+}
+
+.employee-card {
+  border: 2px solid grey;
+  background-color: bisque;
+  margin: 5px auto;
 }
