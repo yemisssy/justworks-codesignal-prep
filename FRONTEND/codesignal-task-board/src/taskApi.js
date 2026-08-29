@@ -52,11 +52,24 @@ export const fetchTask = async () => {
   try {
     const response = await fetch("https://contentapi.codesignal.com/tasks");
     const data = await response.json();
+    return data.map((task) => ({ ...task, id: crypto.randomUUID() }));
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const fetchUser = async (userId) => {
+  try {
+    const response = await fetch(
+      `https://contentapi.codesignal.com/users/${userId}`,
+    );
+    const data = await response.json();
     return data;
   } catch (e) {
     console.error(e);
   }
 };
+
 export const tasks = Object.values(data)
   .flat()
   .map((task) => ({ ...task, id: crypto.randomUUID() }));

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 import { statuses } from "./constant.js";
-import { tasks, fetchTask } from "./taskApi.js";
+import { tasks, fetchTask, fetchUser } from "./taskApi.js";
 
 import RenderColumn from "./rendercolumn.jsx";
 import NewTaskForm from "./newtaskForm.jsx";
@@ -10,10 +10,29 @@ import NewTaskForm from "./newtaskForm.jsx";
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [appTasks, setAppTask] = useState(tasks);
+  const [users, setUsers] = useState([{}]);
 
   const updateTaskstApiData = async () => {
     const data = await fetchTask();
     data?.data?.length > 0 ? setAppTask(data.data) : null;
+  };
+
+  // const retrievUser = async (userId) => {
+  //   const data = await fetchUser(userId);
+  //   //It's assumed there will always be a user, so I don't need to solve for fall back
+  //   setUsers((prev) => [...prev, data]);
+  // };
+
+  //OR I ust just get all users and pass it to renderColum
+  const getAllUsersAssignedToTask = () => {
+    let users = [];
+    appTasks.forEach(async (task) => {
+      if (Object.hasOwn(task, "assignedUser")) {
+        const data = await fetchUser(task.assignedUser);
+        users.push(data);
+      }
+    });
+    setUsers(users);
   };
 
   const handleModalOpen = () => {
@@ -31,6 +50,7 @@ function App() {
 
   useEffect(() => {
     updateTaskstApiData();
+    getAllUsersAssignedToTask();
   }, []);
 
   return (
@@ -52,7 +72,9 @@ function App() {
           <RenderColumn
             status={status}
             key={`${status}${index}`}
-            tasks={appTasks}
+            apptasks={appTasks}
+            // getUser={retrievUser}
+            users={users}
           />
         ))}
       </div>
