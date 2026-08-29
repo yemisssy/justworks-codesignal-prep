@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-function AddEmployee() {
+function AddEmployee(employeeprops) {
+  const { closeModal, addEmployee } = employeeprops;
+
   const [formData, setFormData] = useState({
     employeeName: "",
     employeeRole: "",
@@ -10,11 +12,20 @@ function AddEmployee() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const employeeName = formData.employeeName.trim("");
+    const employeeRole = formData.employeeRole.trim("");
+    console.log(employeeName, employeeRole);
+
+    if (employeeName === "" || employeeRole === "") return;
+
+    addEmployee({ employeeName, employeeRole });
+
     setFormData({
       employeeName: "",
       employeeRole: "",
       startData: "",
     });
+    closeModal();
   };
 
   const handleChange = (e) => {

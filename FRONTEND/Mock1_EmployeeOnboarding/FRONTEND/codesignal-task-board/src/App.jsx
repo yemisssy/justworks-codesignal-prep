@@ -23,6 +23,18 @@ function App() {
     setEmployees(allEmployees);
   }, []);
 
+  const addNewEmployee = (formData) => {
+    const reshapedEmployee = {
+      id: `employee-${employeeData.length + 1}`,
+      name: formData.employeeName,
+      role: formData.employeeRole,
+      startDate: formData.startDate,
+      status: statuses[0],
+    };
+
+    setEmployees((prev) => [...prev, reshapedEmployee]);
+  };
+
   return (
     <div className="dashboard">
       <div className="dashboard_header">
@@ -57,7 +69,10 @@ function App() {
         <div className="modal_background">
           <div className="modal_content">
             <h2> Enter Employees detail </h2>
-            <AddEmployee closeModal={handleCloseModal} />
+            <AddEmployee
+              closeModal={handleCloseModal}
+              addEmployee={addNewEmployee}
+            />
           </div>
         </div>
       )}
