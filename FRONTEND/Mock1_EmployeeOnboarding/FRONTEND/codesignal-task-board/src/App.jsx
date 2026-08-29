@@ -53,7 +53,7 @@ function App() {
               {employees
                 .filter((employee) => employee.status === status)
                 .map((employee) => (
-                  <div className="employee-card">
+                  <div className="employee-card" key={employee.id}>
                     <h3 className="employee-card__name">{employee["name"]}</h3>
                     <p className="employee-card__role">{employee["role"]}</p>
                     <p className="employee-card__start-date">

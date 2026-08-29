@@ -12,12 +12,12 @@ function AddEmployee(employeeprops) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const employeeName = formData.employeeName.trim("");
-    const employeeRole = formData.employeeRole.trim("");
+    const employeeName = formData.employeeName.trim();
+    const employeeRole = formData.employeeRole.trim();
     const startDate = formData.startDate;
     console.log(employeeName, employeeRole);
 
-    if (employeeName === "" || employeeRole === "") return;
+    if (!employeeName || !employeeRole || !startDate) return;
 
     addEmployee({ employeeName, employeeRole, startDate });
 
