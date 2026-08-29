@@ -25,7 +25,7 @@ function App() {
 
   const addNewEmployee = (formData) => {
     const reshapedEmployee = {
-      id: `employee-${employeeData.length + 1}`,
+      id: crypto.randomUUID(),
       name: formData.employeeName,
       role: formData.employeeRole,
       startDate: formData.startDate,
@@ -55,7 +55,7 @@ function App() {
                 .map((employee) => (
                   <div className="employee-card">
                     <h3 className="employee-card__name">{employee["name"]}</h3>
-                    <p className="employee-card__role">P{employee["role"]}</p>
+                    <p className="employee-card__role">{employee["role"]}</p>
                     <p className="employee-card__start-date">
                       {employee["startDate"]}
                     </p>

@@ -14,16 +14,17 @@ function AddEmployee(employeeprops) {
 
     const employeeName = formData.employeeName.trim("");
     const employeeRole = formData.employeeRole.trim("");
+    const startDate = formData.startDate;
     console.log(employeeName, employeeRole);
 
     if (employeeName === "" || employeeRole === "") return;
 
-    addEmployee({ employeeName, employeeRole });
+    addEmployee({ employeeName, employeeRole, startDate });
 
     setFormData({
       employeeName: "",
       employeeRole: "",
-      startData: "",
+      startDate: "",
     });
     closeModal();
   };
