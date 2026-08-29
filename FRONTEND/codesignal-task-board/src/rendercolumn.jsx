@@ -10,7 +10,7 @@ function RenderColumn(colProps) {
         {tasks
           .filter((task) => task.status === status)
           .map((card, index) => (
-            <div className="card" key={`${index}-${status}${card.title}`}>
+            <div className="card" key={card.id}>
               <h3 className="card__title">{card.title}</h3>
               <p className="card__description">{card.description}</p>
             </div>

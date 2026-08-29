@@ -47,10 +47,13 @@ export const data = {
   ],
 };
 
-export const tasks = Object.values(data).flat();
+export const tasks = Object.values(data)
+  .flat()
+  .map((task) => ({ ...task, id: crypto.randomUUID() }));
 
 export const shapeNewTask = (newTask) => {
   const newTaskReshaped = {
+    id: crypto.randomUUID(),
     title: newTask.taskTitle,
     description: newTask["taskDescription"],
     status: statuses[0],
