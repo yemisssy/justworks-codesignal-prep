@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+main {
+  max-width: 640px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.cell {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #999;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.correct,
+.present,
+.absent {
+  border-width: 2px;
+}
